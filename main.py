@@ -12,10 +12,9 @@ class ListePersonnes:
 
     def ajouter_personne(self, nom, age):
         self.personnes.append(Personne(nom, age))
-        sql = ("INSERT INTO PERSONNE ('nom', 'age') VALUE ('%f','%f')",(nom, age))
-        db.execute(sql)
-        pers = db.fetchall()
-        print(pers)
+        datab.cree_pers(nom, age)
+        
+
 
     def afficher_personnes(self):
         for personne in self.personnes:
@@ -142,7 +141,8 @@ def menu_cinema(): # Fonction du Cinema
     return choix
 
 ###################################################################################################
-from database import mysql as db
+import database as datab
+database = datab.connection_params
 liste_personne = ListePersonnes()
 file_attente = FileAttente()
 salle_cinema = SalleCinema(10)
