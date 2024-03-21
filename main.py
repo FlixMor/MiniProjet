@@ -2,7 +2,7 @@ class Personne:
     def __init__(self, nom, age):
         self.nom = nom
         self.age = age
-
+        
 ###################################################################################################
         
 class ListePersonnes:
@@ -12,7 +12,10 @@ class ListePersonnes:
 
     def ajouter_personne(self, nom, age):
         self.personnes.append(Personne(nom, age))
-
+        sql = ("INSERT INTO PERSONNE ('nom', 'age') VALUE ('%f','%f')",(nom, age))
+        db.execute(sql)
+        pers = db.fetchall()
+        print(pers)
 
     def afficher_personnes(self):
         for personne in self.personnes:
@@ -139,7 +142,7 @@ def menu_cinema(): # Fonction du Cinema
     return choix
 
 ###################################################################################################
-
+from database import mysql as db
 liste_personne = ListePersonnes()
 file_attente = FileAttente()
 salle_cinema = SalleCinema(10)
