@@ -18,16 +18,17 @@ class ListePersonnes:
 
     def afficher_personnes(self):
         datab.afficher_pers()
-        for personne in self.personnes:
-            print(f"Nom: {personne.nom}, Age: {personne.age}")
+        #for personne in self.personnes:
+            #print(f"Nom: {personne.nom}, Age: {personne.age}")
 
     
-    def rechercher_personne(self, nom):
-        for personne in self.personnes:
-            if personne.nom == nom:
-                print(f"Voici la personne trouve: Nom: {personne.nom}, Age: {personne.age}")
-                return
-        print("Personne non trouvée.")
+    def rechercher_personne(self, nom, age):
+        datab.recher_pers(nom, age)
+        #for personne in self.personnes:
+            #if personne.nom == nom:
+                #print(f"Voici la personne trouve: Nom: {personne.nom}, Age: {personne.age}")
+                #return
+        #print("Personne non trouvée.")
 
 
     def filtrer_personnes_par_age(self, min_age, max_age):
@@ -168,7 +169,8 @@ while(choix != quitter):
 
             elif choix == 3:
                 nom = str(input("Entrer Nom a chercher: "))
-                liste_personne.rechercher_personne(nom)
+                age = int(input("Entrer Age : "))
+                liste_personne.rechercher_personne(nom,age)
 
             elif choix == 4:
                 min_age = int(input("Entrer Age Minimum: "))

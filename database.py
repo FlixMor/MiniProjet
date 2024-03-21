@@ -19,8 +19,15 @@ def afficher_pers():
     with mysql.connect(**connection_params) as db:
         with db.cursor() as cursor:
             sql = "SELECT * FROM CLIENT"
-            i = cursor.execute(sql)
+            cursor.execute(sql)
             i = cursor.fetchall()
             for result in i:
                 print(result)
             
+def recher_pers(nom, age):
+    with mysql.connect(**connection_params) as db:
+        with db.cursor() as cursor:
+            sql = "SELECT * FROM CLIENT WHERE nom=%s and age=%s"
+            i = cursor.execute(sql, (nom, age))
+            i = cursor.fetchall()
+            print(i)
