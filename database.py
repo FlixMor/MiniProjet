@@ -18,8 +18,9 @@ def cree_pers(nom, age):
 def afficher_pers():
     with mysql.connect(**connection_params) as db:
         with db.cursor() as cursor:
-            #sql = "SELECT * FROM personne"
-            #i = cursor.execute(sql)
-            #cursor.fetchall()
-            #for i in mysql:
-            #    print(i)
+            sql = "SELECT * FROM CLIENT"
+            i = cursor.execute(sql)
+            i = cursor.fetchall()
+            for result in i:
+                print(result)
+            
