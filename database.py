@@ -15,3 +15,11 @@ def cree_pers(nom, age):
             cursor.execute(sql_insert, (nom, age))
             db.commit()
 
+def afficher_pers():
+    with mysql.connect(**connection_params) as db:
+        with db.cursor() as cursor:
+            #sql = "SELECT * FROM personne"
+            #i = cursor.execute(sql)
+            #cursor.fetchall()
+            #for i in mysql:
+            #    print(i)

@@ -17,6 +17,7 @@ class ListePersonnes:
 
 
     def afficher_personnes(self):
+        datab.afficher_pers()
         for personne in self.personnes:
             print(f"Nom: {personne.nom}, Age: {personne.age}")
 
@@ -142,7 +143,6 @@ def menu_cinema(): # Fonction du Cinema
 
 ###################################################################################################
 import database as datab
-database = datab.connection_params
 liste_personne = ListePersonnes()
 file_attente = FileAttente()
 salle_cinema = SalleCinema(10)
