@@ -7,6 +7,7 @@ connection_params = {
     'database' : "personne" 
 }
 
+
 def cree_pers(nom, age):
     with mysql.connect(**connection_params) as db:
         with db.cursor() as cursor:
@@ -28,6 +29,6 @@ def recher_pers(nom, age):
     with mysql.connect(**connection_params) as db:
         with db.cursor() as cursor:
             sql = "SELECT * FROM CLIENT WHERE nom=%s and age=%s"
-            i = cursor.execute(sql, (nom, age))
+            cursor.execute(sql, (nom, age))
             i = cursor.fetchall()
             print(i)
