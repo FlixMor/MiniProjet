@@ -6,11 +6,8 @@ import Cinema.SalleCinema as Salle
         
 ###################################################################################################
 
-###################################################################################################
+#   Fonction de menu
 
-###################################################################################################
-
-###################################################################################################
             
 def menu(): # Fonction du Menu Principale
     print("Entrer l'une des options suivante: ")
@@ -55,11 +52,18 @@ def menu_cinema(): # Fonction du Cinema
     return choix
 
 ###################################################################################################
+
+#   Variables globales
+
 liste_personne = Liste.ListePersonnes()
 file_attente = File.FileAttente()
 salle_cinema = Salle.SalleCinema()
 choix = 3
 quitter = '0'
+
+###################################################################################################
+
+#  Debut du main
 
 while(choix != quitter):
 
@@ -140,4 +144,6 @@ while(choix != quitter):
             else:
                 print("Choix Invalide")
                 break
-    
+            
+    elif choix == quitter:
+        break
