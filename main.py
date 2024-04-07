@@ -1,10 +1,8 @@
-import ListePersonne as ListePersonne
-import FileAttente as FileAttente
-import SalleCinema as SalleCinema
-class Personne:
-    def __init__(self, nom, age):
-        self.nom = nom
-        self.age = age
+import ListePersonne.ListePersonne as Liste
+import ListePersonne.Personne as Personne
+import FileAttente.FileAttente as File
+import Cinema.SalleCinema as Salle
+
         
 ###################################################################################################
 
@@ -51,15 +49,16 @@ def menu_cinema(): # Fonction du Cinema
     print("3 - Nombre de place disponible")
     print("4 - Annuler une reservation")
     print("5 - Reserver une place speciale")
-    print("6 - Quitter")
+    print("6 - Recherche de place par nom")
+    print("7 - Quitter")
     choix = input()
     return choix
 
 ###################################################################################################
-liste_personne = ListePersonne()
-file_attente = FileAttente()
-salle_cinema = SalleCinema(10)
-choix = '1'
+liste_personne = Liste.ListePersonnes()
+file_attente = File.FileAttente()
+salle_cinema = Salle.SalleCinema()
+choix = 3
 quitter = '0'
 
 while(choix != quitter):
@@ -74,40 +73,38 @@ while(choix != quitter):
                 print("Cree une personne")
                 nom = str(input("Entrer Nom : "))
                 age = int(input("Entrer Age : "))
-                liste_personne.ajouter_personne(nom, age)
+                pers = Personne.Personne(nom, age)
+                liste_personne.ajouter_personne(pers)
 
             elif choix == '2':
-                liste_personne.afficher_personnes()
+                liste_personne.afficher_liste()
 
             elif choix == '3':
-                nom = str(input("Entrer Nom a chercher: "))
-                age = int(input("Entrer Age : "))
-                liste_personne.rechercher_personne(nom,age)
+                liste_personne.rechercher_personne()
 
             elif choix == '4':
-                min_age = int(input("Entrer Age Minimum: "))
-                max_age = int(input("Entrer Age Maximum: "))
-                liste_personne.filtrer_personnes_par_age(min_age, max_age)
+                liste_personne.filtrer_personnes_par_age()
+
             elif choix == '5':
                 break
             else:
                 print("Choix Invalide")
             break
 
-    elif choix == '2':
+    elif choix == 2:
         
         while(choix != '5'):
+
             choix = menu_liste()
+
             if choix == '1':
-                nom = str(input("Entrer Nom a ajouter a la liste: "))
-                file_attente.ajouter_personne_en_attente(nom)
+                file_attente.ajouter_personne_en_attente()
 
             elif choix == '2':
                 file_attente.supprimer_personne_de_attente()
             
             elif choix == '3':
-                nom = str(input("Entrer Nom a ajouter en priorite: "))
-                file_attente.ajouter_personne_prioritaire(nom)
+                file_attente.ajouter_personne_prioritaire()
 
             elif choix == '4':
                 file_attente.afficher_liste()
@@ -118,13 +115,11 @@ while(choix != quitter):
                 print("Choix Invalide")
                 break
 
-    elif choix == '3':
-        while(choix != '6'):
+    elif choix == 3:
+        while(choix != '7'):
             choix = menu_cinema()
             if choix == '1':
-                nom = str(input("Entrer le Nom : "))
-                place = str(input("Entrer la place desirer : "))
-                salle_cinema.reserver_place(nom, place)
+                salle_cinema.reserver_place()
 
             elif choix == '2':
                 salle_cinema.afficher_places_reservées()
@@ -133,14 +128,14 @@ while(choix != quitter):
                 salle_cinema.nombre_places_disponibles()
 
             elif choix == '4':
-                nom = str(input("Entrer le nom de la personne a annuler la reservation: "))
-                salle_cinema.annuler_reservation(nom)
+                salle_cinema.annuler_reservation()
 
             elif choix == '5':
-                nom = str(input("Entrer le nom de la personne speciale: "))
-                salle_cinema.reserver_place_speciale(nom)
+                salle_cinema.reserver_place_speciale()
 
-            elif choix == '6':
+            elif choix =='6':
+                salle_cinema.filtrer_reservations_par_personne()
+            elif choix == '7':
                 break
             else:
                 print("Choix Invalide")
